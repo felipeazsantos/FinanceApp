@@ -1,6 +1,5 @@
-package dev.felipeazsantos.financeapp.activities.screens
+package dev.felipeazsantos.financeapp.activities.intro.screens
 
-import android.view.Surface
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
