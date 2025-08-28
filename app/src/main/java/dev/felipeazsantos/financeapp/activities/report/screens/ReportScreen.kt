@@ -9,13 +9,17 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import dev.felipeazsantos.financeapp.R
 import dev.felipeazsantos.financeapp.activities.report.components.CenterStatsCard
 import dev.felipeazsantos.financeapp.activities.report.components.GradientHeader
+import dev.felipeazsantos.financeapp.activities.report.components.SummaryColumns
 import dev.felipeazsantos.financeapp.domain.BudgetDomain
 import dev.felipeazsantos.financeapp.ui.theme.FinanceAppTheme
 
@@ -62,10 +66,21 @@ fun ReportContent(
                         .fillMaxWidth()
                         .wrapContentHeight()
                         .padding(horizontal = 24.dp)
-                        .padding(top = 150.dp)
+                        .padding(top = 150.dp, bottom = 32.dp)
                 )
             }
         }
+
+        item { SummaryColumns(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp)
+                .background(
+                    color = colorResource(id = R.color.lightBlue),
+                    shape = RoundedCornerShape(16.dp)
+                )
+                .padding(8.dp)
+        ) }
     }
 }
 
