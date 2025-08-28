@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -13,6 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.felipeazsantos.financeapp.activities.dashboard.components.ActionButtonRow
 import dev.felipeazsantos.financeapp.activities.dashboard.components.CardSection
+import dev.felipeazsantos.financeapp.activities.dashboard.components.ExpenseItem
 import dev.felipeazsantos.financeapp.activities.dashboard.components.HeaderSection
 import dev.felipeazsantos.financeapp.domain.ExpenseDomain
 
@@ -20,10 +22,10 @@ import dev.felipeazsantos.financeapp.domain.ExpenseDomain
 @Preview(showBackground = true)
 fun MainScreenPreview() {
     val expenses = listOf(
-        ExpenseDomain("Restaurant", 213.47, "img1", "15 jun 2025 18:20"),
-        ExpenseDomain("McDonald", 120.88, "img2", "18 jun 2025 12:33"),
-        ExpenseDomain("Cinema", 80.40, "img3", "18 jun 2025 14:15"),
-        ExpenseDomain("Restaurant", 103.57, "img1", "16 jun 2025 18:47")
+        ExpenseDomain("Restaurant", 213.47, "resturant", "15 jun 2025 18:20"),
+        ExpenseDomain("McDonald", 120.88, "mcdonald", "18 jun 2025 12:33"),
+        ExpenseDomain("Cinema", 80.40, "cinema", "18 jun 2025 14:15"),
+        ExpenseDomain("Restaurant", 103.57, "resturant", "16 jun 2025 18:47")
     )
     
     MainScreen(
@@ -51,6 +53,7 @@ fun MainScreen(
             item { HeaderSection() }
             item { CardSection(onClick = onCardClick) }
             item { ActionButtonRow() }
+            items(expenses) { expense -> ExpenseItem(expense) }
         }
     }
 }
