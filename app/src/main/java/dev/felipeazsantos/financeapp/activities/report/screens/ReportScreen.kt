@@ -1,22 +1,30 @@
 package dev.felipeazsantos.financeapp.activities.report.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import dev.felipeazsantos.financeapp.R
+import dev.felipeazsantos.financeapp.activities.dashboard.components.BottomNavigationBar
+import dev.felipeazsantos.financeapp.activities.report.components.BudgetItem
 import dev.felipeazsantos.financeapp.activities.report.components.CenterStatsCard
 import dev.felipeazsantos.financeapp.activities.report.components.GradientHeader
 import dev.felipeazsantos.financeapp.activities.report.components.SummaryColumns
@@ -28,7 +36,7 @@ fun ReportScreen(
     budgets: List<BudgetDomain>,
     onBack: () -> Unit
 ) {
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
     ) {
@@ -36,6 +44,24 @@ fun ReportScreen(
             budgets = budgets,
             onBack = onBack
         )
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize(),
+            verticalArrangement = Arrangement.Bottom
+        ) {
+            BottomNavigationBar(
+                modifier = Modifier
+                    .height(80.dp),
+                onItemSelected = { itemId ->
+                    if (itemId == R.id.wallet) {
+
+                    }
+                }
+            )
+        }
+
+
     }
 }
 
@@ -71,16 +97,44 @@ fun ReportContent(
             }
         }
 
-        item { SummaryColumns(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp)
-                .background(
-                    color = colorResource(id = R.color.lightBlue),
-                    shape = RoundedCornerShape(16.dp)
+        item {
+            SummaryColumns(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp)
+                    .background(
+                        color = colorResource(id = R.color.lightBlue),
+                        shape = RoundedCornerShape(16.dp)
+                    )
+                    .padding(8.dp)
+            )
+        }
+
+        item {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 16.dp)
+                    .padding(horizontal = 24.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = "My Budget",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 19.sp,
+                    color = colorResource(id = R.color.darkBlue)
                 )
-                .padding(8.dp)
-        ) }
+
+                Text(
+                    text = "Edit",
+                    color = colorResource(id = R.color.darkBlue)
+                )
+            }
+        }
+
+        itemsIndexed(budgets) { index, budget ->
+            BudgetItem(budget = budget, index = index)
+        }
     }
 }
 
@@ -101,7 +155,8 @@ private fun ReportScreenPreview() {
         BudgetDomain(
             title = "Transport",
             price = 75.0,
-            percent = 10.0)
+            percent = 10.0
+        )
     )
 
     FinanceAppTheme {
