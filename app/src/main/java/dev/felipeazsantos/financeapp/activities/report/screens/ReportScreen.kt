@@ -1,0 +1,86 @@
+package dev.felipeazsantos.financeapp.activities.report.screens
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import dev.felipeazsantos.financeapp.activities.report.components.GradientHeader
+import dev.felipeazsantos.financeapp.domain.BudgetDomain
+import dev.felipeazsantos.financeapp.ui.theme.FinanceAppTheme
+
+@Composable
+fun ReportScreen(
+    budgets: List<BudgetDomain>,
+    onBack: () -> Unit
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        ReportContent(
+            budgets = budgets,
+            onBack = onBack
+        )
+    }
+}
+
+@Composable
+fun ReportContent(
+    budgets: List<BudgetDomain>,
+    modifier: Modifier = Modifier,
+    onBack: () -> Unit
+) {
+    LazyColumn(
+        modifier = modifier
+            .background(Color.White)
+    ) {
+        item {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(250.dp)
+            ) {
+                GradientHeader(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(250.dp),
+                    onBack = onBack
+                )
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun ReportScreenPreview() {
+    val budgets = listOf(
+        BudgetDomain(
+            title = "Groceries",
+            price = 400.0,
+            percent = 50.0
+        ),
+        BudgetDomain(
+            title = "Entertainment",
+            price = 230.0,
+            percent = 20.0
+        ),
+        BudgetDomain(
+            title = "Transport",
+            price = 75.0,
+            percent = 10.0)
+    )
+
+    FinanceAppTheme {
+        ReportScreen(
+            budgets = budgets, onBack = {}
+        )
+    }
+}
