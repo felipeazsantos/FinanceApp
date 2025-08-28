@@ -4,15 +4,19 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import dev.felipeazsantos.financeapp.R
 import dev.felipeazsantos.financeapp.activities.dashboard.components.ActionButtonRow
+import dev.felipeazsantos.financeapp.activities.dashboard.components.BottomNavigationBar
 import dev.felipeazsantos.financeapp.activities.dashboard.components.CardSection
 import dev.felipeazsantos.financeapp.activities.dashboard.components.ExpenseItem
 import dev.felipeazsantos.financeapp.activities.dashboard.components.HeaderSection
@@ -55,5 +59,16 @@ fun MainScreen(
             item { ActionButtonRow() }
             items(expenses) { expense -> ExpenseItem(expense) }
         }
+
+        BottomNavigationBar(
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .height(80.dp),
+            onItemSelected = { itemId ->
+                when(itemId) {
+                    R.id.wallet -> {}
+                }
+            }
+        )
     }
 }
