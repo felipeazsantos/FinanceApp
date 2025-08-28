@@ -25,7 +25,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dev.felipeazsantos.financeapp.R
 import dev.felipeazsantos.financeapp.domain.ExpenseDomain
-import kotlin.math.sin
 
 @Composable
 fun ExpenseItem(item: ExpenseDomain) {
