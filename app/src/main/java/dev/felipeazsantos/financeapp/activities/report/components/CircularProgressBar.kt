@@ -3,7 +3,6 @@ package dev.felipeazsantos.financeapp.activities.report.components
 import androidx.compose.foundation.Canvas
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Canvas
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
@@ -28,7 +27,7 @@ fun CircularProgressBar(
         )
 
         drawArc(
-            color = backgroundColor,
+            color = color,
             startAngle = -90f,
             sweepAngle = (progress/max) * 360f,
             useCenter = false,

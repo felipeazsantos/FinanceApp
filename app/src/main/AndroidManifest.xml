@@ -28,6 +28,11 @@
             android:theme="@style/Theme.FinanceApp">
 
         </activity>
+
+        <activity
+            android:name=".activities.report.ReportActivity"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>

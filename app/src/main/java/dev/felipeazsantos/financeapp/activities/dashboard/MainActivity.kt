@@ -1,5 +1,6 @@
 package dev.felipeazsantos.financeapp.activities.dashboard
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -16,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.felipeazsantos.financeapp.activities.dashboard.screens.MainScreen
+import dev.felipeazsantos.financeapp.activities.report.ReportActivity
 import dev.felipeazsantos.financeapp.ui.theme.FinanceAppTheme
 import dev.felipeazsantos.financeapp.viewmodel.MainViewModel
 import kotlin.getValue
@@ -31,7 +33,7 @@ class MainActivity : ComponentActivity() {
                 MainScreen(
                     expenses = mainViewModel.loadData(),
                     onCardClick = {
-
+                        startActivity(Intent(this, ReportActivity::class.java))
                     }
                 )
             }
